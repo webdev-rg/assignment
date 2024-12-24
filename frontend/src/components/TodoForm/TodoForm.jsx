@@ -13,6 +13,11 @@ export const TodoForm = ({ setIsTodoForm, fetchTodos }) => {
   const handleAddTodo = async (e) => {
     e.preventDefault();
 
+    if (!firstName || !lastName || !gender || !email || languages.length === 0) {
+      alert("Please fill in all fields.");
+      return;
+    }
+
     const uniqueId = Date.now() + Math.random().toString(36).substr(2, 9);
 
     const todoData = {
@@ -47,7 +52,7 @@ export const TodoForm = ({ setIsTodoForm, fetchTodos }) => {
 
   return (
     <>
-      <div className="w-full h-screen fixed top-0 left-0 z-10 bg-[#00000099] flex items-center justify-center">
+      <div className="w-full h-screen fixed top-0 left-0 z-20 bg-[#00000099] flex items-center justify-center">
         {!isSubmitted ? (
           <div className="sm:w-[60rem] w-full p-8 bg-white sm:rounded-2xl relative">
             <div
@@ -81,6 +86,7 @@ export const TodoForm = ({ setIsTodoForm, fetchTodos }) => {
                       className="w-full h-20 bg-[#ffeef0] px-8 text-2xl"
                       value={firstName}
                       onChange={(e) => setFirstName(e.target.value)}
+                      required
                     />
                   </div>
                   <div className="w-full flex flex-col gap-4">
@@ -98,6 +104,7 @@ export const TodoForm = ({ setIsTodoForm, fetchTodos }) => {
                       className="w-full h-20 bg-[#ffeef0] px-8 text-2xl"
                       value={lastName}
                       onChange={(e) => setLastName(e.target.value)}
+                      required
                     />
                   </div>
                 </div>
@@ -114,6 +121,7 @@ export const TodoForm = ({ setIsTodoForm, fetchTodos }) => {
                         id="male"
                         value="male"
                         onChange={(e) => setGender(e.target.value)}
+                        required
                       />
                       <label htmlFor="male" className="text-3xl text-[#686465]">
                         Male
@@ -127,6 +135,7 @@ export const TodoForm = ({ setIsTodoForm, fetchTodos }) => {
                         id="female"
                         value="female"
                         onChange={(e) => setGender(e.target.value)}
+                        required
                       />
                       <label
                         htmlFor="female"
@@ -160,6 +169,7 @@ export const TodoForm = ({ setIsTodoForm, fetchTodos }) => {
                             );
                           }
                         }}
+                        required
                       />
                       <label
                         htmlFor="english"
@@ -186,7 +196,8 @@ export const TodoForm = ({ setIsTodoForm, fetchTodos }) => {
                             );
                           }
                         }}
-                      />
+                        required
+                        />
                       <label
                         htmlFor="hindi"
                         className="text-3xl text-[#686465]"
@@ -212,7 +223,8 @@ export const TodoForm = ({ setIsTodoForm, fetchTodos }) => {
                             );
                           }
                         }}
-                      />
+                        required
+                        />
                       <label
                         htmlFor="marathi"
                         className="text-3xl text-[#686465]"
@@ -237,6 +249,7 @@ export const TodoForm = ({ setIsTodoForm, fetchTodos }) => {
                     className="w-full h-20 bg-[#ffeef0] px-8 text-2xl"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                    required
                   />
                 </div>
                 <div className="w-full flex items-center gap-4">
